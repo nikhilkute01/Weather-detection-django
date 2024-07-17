@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather_Detection</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="city1" placeholder="City 1">
+        <input type="text" name="city2" placeholder="City 2">
+        <button type="submit">Compare weather</button>
+    </form>
+    <div class="comparison-container">
+        {% if weather_data1 %}
+        <div class="city-container">
+            {% include 'weather_app/city_weather.html' with weather_data=weather_data1 daily_forecast=daily_forecast1 %}
+        </div>
+        {% endif %}
+        {% if weather_data2 %}
+        <div class="city-container">
+            {% include 'weather_app/city_weather.html' with weather_data=weather_data2 daily_forecast=daily_forecast2 %}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
